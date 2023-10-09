@@ -5,11 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hot and Cold Game</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <script src="scripting.js" async></script>
 </head>
 <body>
     <h1>Try to see if you can guess my number!</h1>
     <h2>Guess a number from 1 to 100</h2>
-    <h3>And I will tell you if you are <span style="color: orangered">HOT</span> or <span style="color: aqua">COLD</span></h3>
+    <h3>And I will tell you if you are <span style="color: orangered">HOT</span> or <span style="color: #007FFF">COLD</span></h3>
+    <p>Keep in mind that you will only have <strong>5 guesses</strong></p>
+    <form>
+        <label>Guess!</label><br>
+        <input type="text" value="50"><br>
+    </form>
+    <div class="button-container">
+        <button>+1</button>
+        <button>+5</button>
+        <button>+10</button>
+        <button>+25</button>
+        <button>-1</button>
+        <button>-5</button>
+        <button>-10</button>
+        <button>-25</button>
+    </div>
+    
 </body>
 </html>
