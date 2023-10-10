@@ -12,15 +12,10 @@ function showRandomForTesting() {
     document.body.appendChild(para);
 }
 
-const add1Button = document.querySelector('button');
-
-var formValue = document.querySelector('input[name="formValue"]');
-
 function add1() {
-    formValue.value = formValue.value + 1;
+    let q = document.getElementById("quantity");
+    q = `${(q += Number(quantity.value))}$`
 }
-
-add1Button.addEventListener('click', add1);
 
 
 showRandomForTesting();
