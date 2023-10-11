@@ -17,6 +17,10 @@ function add1() {
     q = `${(q += Number(quantity.value))}$`
 }
 
+function commit() {
+    
+}
+
 
 showRandomForTesting();
 para.textContent = "Testing: " + para.textContent;
