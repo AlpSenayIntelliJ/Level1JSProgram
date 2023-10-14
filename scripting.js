@@ -63,6 +63,32 @@ function sub25() {
     document.getElementById("quantity").stepDown(25);
 }
 
+/* Enhancement */
+
+function enhance() {
+    let chance = 1+Math.floor(Math.random()*100);
+    let randomize = 1+Math.floor(Math.random()*8);
+
+    if (chance <= 5) {
+        if (randomize == 1) {
+            return "Very Cold";
+        } else if (randomize == 2) {
+            return "Cold";
+        } else if (randomize == 3) {
+            return "Very Cool";
+        } else if (randomize == 4) {
+            return "Warm";
+        } else if (randomize == 5) {
+            return "Very Warm";
+        } else if (randomize == 6) {
+            return "Hot";
+        } else if (randomize == 7) {
+            return "Very Hot";
+        }
+        return "No";
+    }
+}
+
 /* Determining the user value and seeing if hot or cold */
 
 let guessInput = document.getElementById('quantity');
@@ -106,7 +132,8 @@ var defaultGuessesLeft = 5;
 commit.addEventListener('click', () => {
     let num = guessInput.value;
     let status = determine();
-    if (defaultGuessesLeft != 0 && status != "Very Hot") {
+    let enhancement = enhance();
+    if (defaultGuessesLeft != 0 && status != "Very Hot" && enhancement != "Very Hot" && enhancement != "No") {
         defaultGuessesLeft--;
     }
     if (defaultGuessesLeft == 1) {
