@@ -1,3 +1,5 @@
+
+/* reset button */
 const resetBtn = document.getElementById("resetbutton");
 
 function handleClick() {
@@ -7,11 +9,15 @@ function handleClick() {
 resetBtn.addEventListener('click', handleClick);
 
 
+/* generating random number for game */
+
 function generateRandom() {
     return 1 + Math.floor(Math.random()*100);
 }
 
 let random = generateRandom();
+
+/* testing purpose DELETE WHEN FINISHED */
 
 const para = document.createElement('p');
 
@@ -23,6 +29,7 @@ function showRandomForTesting() {
 showRandomForTesting();
 para.textContent = "Testing: " + para.textContent;
 
+/* add/subtract buttons working properly */
 
 function add1() {
     document.getElementById("quantity").stepUp(1);
@@ -56,6 +63,8 @@ function sub25() {
     document.getElementById("quantity").stepDown(25);
 }
 
+/* Determining the user value and seeing if hot or cold */
+
 let guessInput = document.getElementById('quantity');
 
 function determine() {
@@ -83,20 +92,37 @@ function determine() {
 
 let commit = document.getElementById('commitbutton');
 let guesslog = document.getElementById('guesslog');
+
+/* code for dealing with number of guesses */
+
 let guessesLeftSentence = document.getElementById('guessesLeftSentence');
 let warningtext = "You have 1 guess left!";
+let losetext = "You have no more guesses left :/ Click the reset button to play again!";
 let guessesLeftNum = document.getElementById("guessesLeft");
 var defaultGuessesLeft = 5;
+
+/* WHEN COMMIT BUTTON IS CLICKED */
 
 commit.addEventListener('click', () => {
     let num = guessInput.value;
     let status = determine();
-    if (defaultGuessesLeft != 1) {
+    if (defaultGuessesLeft != 0 && status != "Very Hot") {
         defaultGuessesLeft--;
     }
     if (defaultGuessesLeft == 1) {
         guessesLeftSentence.innerHTML = warningtext.bold();
     }
+    if (defaultGuessesLeft == 0 && status != "Bingo!") {
+        gameOver();
+        guessesLeftSentence.innerHTML = losetext.bold();
+        commit.disabled = true;
+    }
+
+    if (status == "Bingo!") {
+        gameWon();
+        commit.disabled = true;
+    }
+
     guessesLeftNum.innerHTML = defaultGuessesLeft;
 
     let template = `
@@ -107,8 +133,21 @@ commit.addEventListener('click', () => {
                     `;
 
     guesslog.innerHTML += template;
-
 })
+
+/* game over functions */
+
+function gameOver() {
+    let over = document.getElementById("gameOver");
+    over.textContent = `${"You lose! The correct guess is "+ random}`;
+}
+
+function gameWon() {
+    let over = document.getElementById("gameOver");
+    over.textContent = `${"You've guessed the secret number! Congrats!"}`;
+    guessesLeftSentence.textContent = "";
+    warningtext.textContent = "";
+}
 
 
 
