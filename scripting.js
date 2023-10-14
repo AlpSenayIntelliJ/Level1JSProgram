@@ -1,3 +1,12 @@
+const resetBtn = document.getElementById("resetbutton");
+
+function handleClick() {
+    window.location.reload();
+}
+
+resetBtn.addEventListener('click', handleClick);
+
+
 function generateRandom() {
     return 1 + Math.floor(Math.random()*100);
 }
@@ -48,9 +57,9 @@ function sub25() {
 }
 
 let guessInput = document.getElementById('quantity');
-let diff = Math.abs(random-guessInput.value);
 
 function determine() {
+    let diff = Math.abs(random-guessInput.value);
     if (diff > 55) {
         return "Very Cold"; 
     } else if (diff <= 55 && diff >= 41) {
@@ -65,17 +74,30 @@ function determine() {
         return "Very Warm";
     } else if (diff <= 8 && diff >= 6) {
         return "Hot";
-    } else if (diff <= 5) {
+    } else if (diff <= 5 && diff > 0) {
         return "Very Hot";
+    } else if (diff == 0) {
+        return "Bingo!"
     }
 }
 
 let commit = document.getElementById('commitbutton');
 let guesslog = document.getElementById('guesslog');
+let guessesLeftSentence = document.getElementById('guessesLeftSentence');
+let warningtext = "You have 1 guess left!";
+let guessesLeftNum = document.getElementById("guessesLeft");
+var defaultGuessesLeft = 5;
 
 commit.addEventListener('click', () => {
     let num = guessInput.value;
     let status = determine();
+    if (defaultGuessesLeft != 1) {
+        defaultGuessesLeft--;
+    }
+    if (defaultGuessesLeft == 1) {
+        guessesLeftSentence.innerHTML = warningtext.bold();
+    }
+    guessesLeftNum.innerHTML = defaultGuessesLeft;
 
     let template = `
                 <tr>
@@ -85,16 +107,8 @@ commit.addEventListener('click', () => {
                     `;
 
     guesslog.innerHTML += template;
+
 })
-
-const resetBtn = document.getElementById("resetbutton");
-
-function handleClick() {
-    window.location.reload();
-}
-
-resetBtn.addEventListener('click', handleClick);
-
 
 
 
