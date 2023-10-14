@@ -17,18 +17,6 @@ function generateRandom() {
 
 let random = generateRandom();
 
-/* testing purpose DELETE WHEN FINISHED */
-
-const para = document.createElement('p');
-
-function showRandomForTesting() {
-    para.textContent = `${random}`;
-    document.body.appendChild(para);
-}
-
-showRandomForTesting();
-para.textContent = "Testing: " + para.textContent;
-
 /* add/subtract buttons working properly */
 
 function add1() {
